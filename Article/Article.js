@@ -112,3 +112,59 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+const body = document.querySelector("body");
+const span = document.querySelector(".expandButton span");
+
+const articleMaker = function(obj) {
+  let div = document.createElement("div");
+  div.classList.add("article");
+  body.appendChild(div);
+
+  let heading = document.createElement("h2");
+  heading.textContent = obj.title;
+  div.appendChild(heading);
+
+  let date = document.createElement("p");
+  date.classList.add("date");
+  date.textContent = obj.date;
+  div.appendChild(date);
+
+  let paragraph1 = document.createElement("p");
+  paragraph1.textContent = obj.firstParagraph;
+  div.appendChild(paragraph1);
+
+  let paragraph2 = document.createElement("p");
+  paragraph2.textContent = obj.secondParagraph;
+  div.appendChild(paragraph2);
+
+  let paragraph3 = document.createElement("p");
+  paragraph3.textContent = obj.thirdParagraph;
+  div.appendChild(paragraph3);
+
+  let btn = document.createElement("span");
+  // btn.textContent = "click me!";
+  btn.classList.add("expandButton");
+  div.style.cursor = "pointer";
+  div.addEventListener("click", () => {
+    div.classList.toggle("article-open");
+  });
+  div.appendChild(btn);
+
+  return div;
+  
+};
+
+const articles = data.map(item => {
+  articleMaker(item);
+});
+
+const newArticle = data.push( {
+  title: "You Should Always Use Semicolons",
+  date: "April 16th, 2020",
+  firstParagraph: "Munch on tasty moths. Meow go back to sleep owner brings food and water tries to pet on head, so scratch get sprayed by water because bad cat fooled again thinking the dog likes me yet pee on walls it smells like breakfast so proudly present butt to human scratch my tummy actually i hate you now fight me. Hide head under blanket so no one can see. Claws in your leg lick plastic bags let me in let me out let me in let me out let me in let me out who broke this door anyway for lick left leg for ninety minutes, still dirty",
+  secondParagraph: "Lick arm hair meow all night, jump around on couch, meow constantly until given food, find something else more interesting, yet trip owner up in kitchen i want food what the heck just happened, something feels fishy. Touch my tail, i shred your hand purrrr. X run at 3am for unwrap toilet paper.",
+  thirdParagraph: "Bring your owner a dead bird. Sleeps on my head gnaw the corn cob for try to hold own back foot to clean it but foot reflexively kicks you in face, go into a rage and bite own foot, hard shove bum in owner's face like camera lens hunt by meowing loudly at 5am next to human slave food dispenser."
+});
+
+articleMaker(data[4]);
